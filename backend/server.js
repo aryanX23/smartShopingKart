@@ -38,10 +38,10 @@ app.use(
 
 app.post('/signin',(req,res)=>{
     var sessionInfo=req.session;
-    console.log("Backend Reached");
-    const {email,password}=req.body;
-    const query = User.findOne({'email': email });
-    query.select('password user_name email');
+    console.log("/signin");
+    const {username,password}=req.body;
+    const query = User.findOne({'username': username });
+    query.select('password username email');
     query.exec(function (err, user) {
         if (user === null){
             res.status(200).send("Invalid User!");
@@ -50,9 +50,9 @@ app.post('/signin',(req,res)=>{
         {
             if(decrypt(user.password).localeCompare(password)===0){
                 sessionInfo.isLoggedIn=true;
-                sessionInfo.user_name=user.user_name;
+                sessionInfo.username=user.user_name;
                 sessionInfo.email=user.email;
-                res.status(200).send({user_name:req.session.user_name,isLoggedIn:req.session.isLoggedIn,status:"success"});
+                res.status(200).send({username:req.session.username,isLoggedIn:req.session.isLoggedIn,status:"success"});
             }
             else{
                 res.status(200).send({isLoggedIn:req.session.isLoggedIn,status:"fail"});
@@ -61,7 +61,8 @@ app.post('/signin',(req,res)=>{
     });
 });
 app.post('/register',(req,res)=>{
-    const {email,password,user_name}=req.body;
+    console.log("/register");
+    const {email,password,username}=req.body;
     const query = User.findOne({'email': email });
     query.select('email');
     query.exec(function (err, user) {
@@ -69,7 +70,7 @@ app.post('/register',(req,res)=>{
             const user=new User({
                 email: email,
                 password:encrypt(password),
-                user_name:user_name,
+                username:username,
             });
             user.save().then(result=>{
                 res.send("Registration Successful!")

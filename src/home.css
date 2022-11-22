@@ -26,7 +26,7 @@
     margin: 0;
     padding: 0;
     aspect-ratio:1;
-    width:6em;
+    width:8em;
 }
 .logoDiv{
     position: absolute;
@@ -35,30 +35,17 @@
     justify-content:center;
     align-items: center;
     gap:0;
-    top:8vh;
-    left: 5vw;
+    top:9vh;
+    left: 8vw;
 }
 .logoTitle{
     font-family: 'Hind Madurai';
     font-style: normal;
     font-weight: 700;
-    font-size: 2.5em;
+    font-size: 4em;
     text-align: center;
     text-transform: capitalize;
     color: #FFFFFF;
-}
-.formDiv{
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;    
-    position: absolute;
-    width: 32em;
-    height: 35em;
-    background: #E6C7A2;
-    border-radius: 50px;
-    top:20vh;
-    right:10vw;
 }
 .signIn{
     font-family: 'Hind Madurai';
@@ -101,6 +88,7 @@
     text-transform: capitalize;
     color: #000000;
     border:none;
+    margin-top: 3vh;
 }
 .loginButton:active{
     transform: scale(0.98);
@@ -113,10 +101,22 @@
 .formBody{
     display: flex;
     flex-direction: column;
-    height: 100vh;
     justify-content:center;
     align-items: center;
-    gap: 3vh;
+    gap: 2vh;
+    padding: 5vh 10vh 5vh 10vh;
+}
+.formDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;    
+    position: absolute;
+    height:min-content;
+    background: #E6C7A2;
+    border-radius: 50px;
+    top:20vh;
+    right:10vw;
 }
 .navbar{
     display: flex;

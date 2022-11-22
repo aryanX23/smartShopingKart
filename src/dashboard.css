@@ -1,5 +1,5 @@
 .dashBody{
-    background: url('../images/dashBg.jpg') no-repeat center fixed;
+    background: url('../images/homeBg.png') no-repeat center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -9,28 +9,155 @@
     bottom: 0;
     left: 0;
     right: 0;
-    display: flex;
-    flex-direction: column;
 }
-.logo{
-    width: 14em;
-    height: 10em;
+.waveBg{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
-.upperDiv{
+.upperNav{
+    width: 100%;
     display: flex;
     flex-direction: row;
-    border:2px solid black;
-    width: 100%;
-    height: 20vh;
+    justify-content: space-between;
 }
-.logoDiv{
+.navLeft{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 4vw;
+    padding-top: 4vh;
+}
+.logo{
+    width: 6vw;
+}
+.navTitle{
+    font-family: 'Hind Madurai';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 4em;
+    text-align: center;
+    text-transform: capitalize;
+    color: #FFFFFF;
+}
+.navRight{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 5vw;
+    padding-top: 4vh;
+    gap: 4vw;
+}
+.workerName{
+    font-family: 'Hind Madurai';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2em;
+    text-align: center;
+    text-transform: capitalize;
+    color: #F5F5F5;
+
+}
+.workerBox{
+    width: 15vw;
+    height: 6vh;
+    background: #737373;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logOutBtn{
+    width: 3vw;
+}
+.logOutBtn:hover{
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+}
+.logOutBtn:active{
+    transform: scale(0.95);
+}
+.lowerBody{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    padding-top: 5vh;
+}
+.leftSide{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Noto Sans';
+    gap: 4vh;
+    padding-left: 10vw;
+}
+.rightSide{
+    padding-right: 15vw;
+}
+.productTitle{
+    width: 15vw;
+    height: 6vh;
+    background: #737373;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Hind Madurai';
     font-style: normal;
-    font-weight: 900;
-    font-size: 32px;
-    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 1.9em;
+    text-align: center;
+    text-transform: capitalize;
+    color: #F5F5F5;
+}
+.productList{
+    box-sizing: border-box;
+    width: 40vw;
+    height: 40vh;
+    background: #E2C7A2;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+}
+.customerName{
+    width: 35vw;
+    height: 6vh;
+    background: #E2C7A2;
+    border-radius: 50px;
+    border: none;
+    font-family: 'Hind Madurai';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em;
+    text-transform: capitalize;
+}
+.buttonDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 35vw;
+    z-index: 100;
+}
+.divBtn{
+    width: 12vw;
+    height: 6vh;  
+    background: #737373;
+    border-radius: 100px;
+    border: none;
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.7em;
+    text-align: center;
+    text-transform: capitalize;
+    color: #F5F5F5;
+}
+.divBtn:hover{
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+}
+.divBtn:active{
+    transform: scale(0.95);
+    transition-duration: 0.5s;
 }

@@ -4,16 +4,31 @@ import './dashboard.css';
 export default function Dashboard(){
     return(
         <div className="dashBody">
-            <div className="upperDiv">
-                <div className="logoDiv">
-                    <img src={process.env.PUBLIC_URL+"/images/logo.png"} className="logo" alt="logo" />
-                    <span>Smart Kart</span>
+            <img src={process.env.PUBLIC_URL+"/images/waveBg.png"} alt="waves" className="waveBg" />
+            <div className="upperNav">
+                <div className="navLeft">
+                    <img src={process.env.PUBLIC_URL+"images/logo.png"} alt="logo" className="logo"/>
+                    <span className="navTitle">Smart Kart</span>
                 </div>
-                <div className="timeContainer">
-
+                <div className="navRight">
+                    <div className="workerBox">
+                        <span className="workerName">Worker Name</span>
+                    </div>
+                    <img src={process.env.PUBLIC_URL+"/images/logOutBtn.png"} alt="logOut" className="logOutBtn"/>
                 </div>
-                <div className="userDetails">
-
+            </div>
+            <div className="lowerBody">
+                <div className="leftSide">
+                    <div className="productTitle"><span>PRODUCT LIST</span></div>
+                    <div className="productList"></div>
+                    <input type="text" className="customerName" placeholder="Enter Customer Name"/>
+                    <div className="buttonDiv">
+                        <button className="divBtn">Accept</button>
+                        <button className="divBtn">Reject</button>
+                    </div>
+                </div>
+                <div className="rightSide">
+                    <img src={process.env.PUBLIC_URL+"/images/dashImg.png"} className="dashImg" alt="dashImg" />
                 </div>
             </div>
         </div>
