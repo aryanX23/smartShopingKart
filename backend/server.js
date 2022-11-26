@@ -19,7 +19,7 @@ const store= new MongoDBstore({
     collections: process.env.COLLECTION
 });
 app.use(cors({
-    origin:`http://localhost:${process.env.ORIGIN_PORT}`,
+    origin:`${process.env.ORIGIN_URI}`,
     credentials: true
 }));
 app.use(bodyParser.json());
@@ -29,7 +29,8 @@ app.use(
       resave: true,
       saveUninitialized: false,
       cookie: {
-        secure:false
+        secure:true,
+        httpOnly:true
     },
         store:store
     })
@@ -41,21 +42,20 @@ app.post('/signin',(req,res)=>{
     console.log("/signin");
     const {username,password}=req.body;
     const query = User.findOne({'username': username });
-    query.select('password username email');
+    query.select('password username');
     query.exec(function (err, user) {
         if (user === null){
-            res.status(200).send("Invalid User!");
+            res.status(200).send({isLoggedIn:false});
         }
         else
         {
             if(decrypt(user.password).localeCompare(password)===0){
                 sessionInfo.isLoggedIn=true;
-                sessionInfo.username=user.user_name;
-                sessionInfo.email=user.email;
-                res.status(200).send({username:req.session.username,isLoggedIn:req.session.isLoggedIn,status:"success"});
+                sessionInfo.username=user.username;
+                res.status(200).send({username:req.session.username,isLoggedIn:req.session.isLoggedIn});
             }
             else{
-                res.status(200).send({isLoggedIn:req.session.isLoggedIn,status:"fail"});
+                res.status(200).send({isLoggedIn:false});
             }
         }
     });
@@ -94,7 +94,7 @@ app.post('/sendData',(req,res)=>{
 app.post('/login',(req,res)=>{
     console.log("/login");
     if(req.session.isLoggedIn)
-        res.send({user_name:req.session.user_name,isLoggedIn:req.session.isLoggedIn});
+        res.send({user_name:req.session.username,isLoggedIn:req.session.isLoggedIn});
     else
         res.send({isLoggedIn:false});
 });

@@ -1,7 +1,22 @@
 import React from "react";
 import './dashboard.css';
+import axios from "axios";
+export default function Dashboard(props){
+    function handleLogOut(){
+        axios({
+            method: 'get',
+            url:"http://localhost:4000/logout",
+            headers: {'Content-Type': 'application/json'}, 
+            withCredentials:true
+        }).then(response=>{
+            setTimeout(()=>{
+                window.location.reload();
+            },1000);
+        });
+    }
+    function handleChoice(){
 
-export default function Dashboard(){
+    }
     return(
         <div className="dashBody">
             <img src={process.env.PUBLIC_URL+"/images/waveBg.png"} alt="waves" className="waveBg" />
@@ -12,17 +27,19 @@ export default function Dashboard(){
                 </div>
                 <div className="navRight">
                     <div className="workerBox">
-                        <span className="workerName">Worker Name</span>
+                        <span className="workerName">{props.username}</span>
                     </div>
-                    <img src={process.env.PUBLIC_URL+"/images/logOutBtn.png"} alt="logOut" className="logOutBtn"/>
+                    <img src={process.env.PUBLIC_URL+"/images/logOutBtn.png"} onClick={handleLogOut} alt="logOut" className="logOutBtn"/>
                 </div>
             </div>
             <div className="lowerBody">
                 <div className="leftSide">
                     <div className="productTitle"><span>PRODUCT LIST</span></div>
-                    <div className="productList"></div>
+                    <div className="productList">
+                        
+                    </div>
                     <input type="text" className="customerName" placeholder="Enter Customer Name"/>
-                    <div className="buttonDiv">
+                    <div className="buttonDiv" onClick={handleChoice} >
                         <button className="divBtn">Accept</button>
                         <button className="divBtn">Reject</button>
                     </div>

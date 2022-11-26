@@ -140,6 +140,14 @@
     text-transform: capitalize;
     color: #F5F5F5;
     cursor: pointer;
+    transform: translateX(30vw);
+}
+.navBtn[data-visibility="true"]{
+    transform: translateX(0);
+    transition: transform 550ms ease-in-out;
+}
+.navBtn[data-visibility="false"]{
+    transition: transform 600ms ease-out;
 }
 .navBtn:active{
     transform: scale(0.98);
