@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/smartShopingKart/static/css/main.3c414c80.css",
-    "main.js": "/smartShopingKart/static/js/main.499e77aa.js",
+    "main.js": "/smartShopingKart/static/js/main.c7adb147.js",
     "index.html": "/smartShopingKart/index.html",
     "main.3c414c80.css.map": "/smartShopingKart/static/css/main.3c414c80.css.map",
-    "main.499e77aa.js.map": "/smartShopingKart/static/js/main.499e77aa.js.map"
+    "main.c7adb147.js.map": "/smartShopingKart/static/js/main.c7adb147.js.map"
   },
   "entrypoints": [
     "static/css/main.3c414c80.css",
-    "static/js/main.499e77aa.js"
+    "static/js/main.c7adb147.js"
   ]
 }
