@@ -13,6 +13,7 @@ function App() {
     headers: {'Content-Type': 'application/json'}, 
     withCredentials:true
     }).then(response=>{
+      console.log(response);
         localStorage.setItem("userDetails",JSON.stringify(response.data));
     });
   },[]);
