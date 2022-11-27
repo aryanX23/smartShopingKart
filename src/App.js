@@ -6,7 +6,7 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import axios from 'axios';
 
 function App() {
-  localStorage.setItem("userDetails",JSON.stringify({isLoggedIn:false}));
+  localStorage.setItem("userDetails",JSON.stringify({isLoggedIn:true}));
   React.useEffect(()=>{axios({
     method: 'post',
     url:"http://65.2.73.149:4000/login",
