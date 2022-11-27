@@ -19,7 +19,7 @@ const store= new MongoDBstore({
     collections: process.env.COLLECTION
 });
 app.use(cors({
-    origin:`${process.env.ORIGIN_URI}`,
+    origin:`http://aryan-rai.me`,
     credentials: true
 }));
 app.use(bodyParser.json());
@@ -29,8 +29,7 @@ app.use(
       resave: true,
       saveUninitialized: false,
       cookie: {
-        secure:false,
-        httpOnly:true
+        secure:false
     },
         store:store
     })
@@ -98,7 +97,7 @@ app.post('/login',(req,res)=>{
     else
         res.send({isLoggedIn:false});
 });
-app.get('/logout',(req,res)=>{
+app.post('/logout',(req,res)=>{
     console.log("/logout");
     req.session.destroy(err=>{
         if(err)
