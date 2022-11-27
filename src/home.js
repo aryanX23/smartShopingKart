@@ -69,7 +69,7 @@ export default function Home(){
             <img src={process.env.PUBLIC_URL+"/images/waveBg.png"} alt="waves" className="waveBg" />
             <motion.img src={process.env.PUBLIC_URL+"/images/homeImg.png"} alt="thaila" className="homeImg" initial={{ y: '-10vh',opacity:0}} animate={{y:'0vh',opacity:1}} transition={{type:'spring', duration: 2, bounce:0}} />
             <motion.div className="logoDiv" initial={{ y: '-10vh',opacity:0}} animate={{y:'0vh',opacity:1}} transition={{type:'spring', duration: 2, bounce:0}} >
-                <img src={process.env.PUBLIC_URL+"images/logo.png"} alt="logo" className="logo" />
+                <img src={process.env.PUBLIC_URL+"/images/logo.png"} alt="logo" className="logo" />
                 <span className="logoTitle">Smart Kart</span>
             </motion.div>
             <div className="navbar">
