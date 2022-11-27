@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/smartShopingKart/" element={JSON.parse(localStorage.getItem("userDetails")).isLoggedIn?<Dashboard/>:<Home/> } />
+        <Route exact path="/smartShopingKart/" element={JSON.parse(localStorage.getItem("userDetails")).isLoggedIn?<Dashboard/>:<Home/> } />
         <Route path="*" element={<Navigate to="/smartShopingKart/" replace />}/>
       </Routes>     
     </div>
