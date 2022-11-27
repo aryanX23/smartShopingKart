@@ -5,7 +5,7 @@ export default function Dashboard(props){
     function handleLogOut(){
         axios({
             method: 'get',
-            url:"http://localhost:4000/logout",
+            url:"http://65.2.153.8:4000/logout",
             headers: {'Content-Type': 'application/json'}, 
             withCredentials:true
         }).then(response=>{

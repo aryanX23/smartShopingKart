@@ -9,7 +9,7 @@ function App() {
   const [userDetails,setUserDetails]=React.useState({isLoggedIn:false});
   React.useEffect(()=>{axios({
     method: 'post',
-    url:"http://localhost:4000/login",
+    url:"http://65.2.153.8:4000/login",
     headers: {'Content-Type': 'application/json'}, 
     withCredentials:true
     }).then(response=>{
