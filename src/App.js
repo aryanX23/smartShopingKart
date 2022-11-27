@@ -16,7 +16,7 @@ function App() {
         localStorage.setItem("userDetails",JSON.stringify(response.data));
     });
   },[]);
-  console.log("test "+JSON.parse(localStorage.getItem("userDetails")));
+  console.log(JSON.parse(localStorage.getItem("userDetails")));
   return (
     <div className="App">
       <Routes>
