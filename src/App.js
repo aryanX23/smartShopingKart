@@ -20,8 +20,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={ userDetails.isLoggedIn?<Dashboard username={userDetails.user_name} />:<Home/> } />
-        <Route path="*" element={<Navigate to="/" replace />}/>
+        <Route path="/smartShopingKart/" element={ userDetails.isLoggedIn?<Dashboard username={userDetails.user_name} />:<Home/> } />
+        <Route path="*" element={<Navigate to="/smartShopingKart/" replace />}/>
       </Routes>     
     </div>
   );
