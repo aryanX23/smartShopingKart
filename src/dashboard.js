@@ -1,7 +1,7 @@
 import React from "react";
 import './dashboard.css';
 import axios from "axios";
-export default function Dashboard(props){
+export default function Dashboard(){
     function handleLogOut(){
         axios({
             method: 'get',
@@ -27,7 +27,7 @@ export default function Dashboard(props){
                 </div>
                 <div className="navRight">
                     <div className="workerBox">
-                        <span className="workerName">{props.username}</span>
+                        <span className="workerName">{JSON.parse(localStorage.getItem("userDetails")).username}</span>
                     </div>
                     <img src={process.env.PUBLIC_URL+"/images/logOutBtn.png"} onClick={handleLogOut} alt="logOut" className="logOutBtn"/>
                 </div>

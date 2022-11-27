@@ -39,7 +39,7 @@ export default function Home(){
                     password:formData.password
                 }
             }).then(response=>{
-                console.log(response.data);
+                localStorage.setItem("userDetails",JSON.stringify(response.data));
                 setTimeout(()=>{
                     window.location.reload();
                 },1000);

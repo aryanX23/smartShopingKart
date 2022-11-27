@@ -6,21 +6,20 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import axios from 'axios';
 
 function App() {
-  const [userDetails,setUserDetails]=React.useState({isLoggedIn:false});
+  localStorage.setItem("userDetails",JSON.stringify({isLoggedIn:false}));
   React.useEffect(()=>{axios({
     method: 'post',
     url:"http://65.2.153.8:4000/login",
     headers: {'Content-Type': 'application/json'}, 
     withCredentials:true
     }).then(response=>{
-        setUserDetails(prev=>(response.data));
+        localStorage.setItem("userDetails",JSON.stringify(response.data));
     });
   },[]);
-  console.log(userDetails);
   return (
     <div className="App">
       <Routes>
-        <Route path="/smartShopingKart/" element={ userDetails.isLoggedIn?<Dashboard username={userDetails.user_name} />:<Home/> } />
+        <Route path="/smartShopingKart/" element={JSON.parse(localStorage.getItem("userDetails")).isLoggedIn?<Dashboard/>:<Home/> } />
         <Route path="*" element={<Navigate to="/smartShopingKart/" replace />}/>
       </Routes>     
     </div>
