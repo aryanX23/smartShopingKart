@@ -2,7 +2,9 @@ import React from "react";
 import './home.css';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import { useNavigate } from "react-router-dom";
 export default function Home(){
+    const navigate= useNavigate();
     const [formState,setFormState]=React.useState("Signin");
     const [formData,setFormData]=React.useState({username:"",email:"",password:""});
     const [dataVisi,setDataVisi]=React.useState("false");
@@ -12,6 +14,12 @@ export default function Home(){
         else
             setDataVisi(prev=>"false");
     }
+    React.useEffect(() => {
+        let isAuth = JSON.parse(localStorage.getItem('userDetails')).isLoggedIn;
+        if(isAuth && isAuth !== null) {
+            navigate("/smartShopingKart/dashboard/");
+        }
+    }, [navigate]);
     function handleformState(event){
         setFormState(prev=>event.target.name);
         setFormData(prev=>({
@@ -41,7 +49,7 @@ export default function Home(){
             }).then(response=>{
                 localStorage.setItem("userDetails",JSON.stringify(response.data));
                 setTimeout(()=>{
-                    window.location.reload();
+                    navigate("/smartShopingKart/dashboard/");
                 },1000);
             });
         }
@@ -59,7 +67,7 @@ export default function Home(){
             }).then(response=>{
                 console.log(response.data);
                 setTimeout(()=>{
-                    window.location.reload();
+                    navigate("/smartShopingKart/");
                 },1000);
             });
         }

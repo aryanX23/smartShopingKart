@@ -1,7 +1,9 @@
 import React from "react";
 import './dashboard.css';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 export default function Dashboard(){
+    const navigate=useNavigate();
     function handleLogOut(){
         axios({
             method: 'get',
@@ -10,7 +12,7 @@ export default function Dashboard(){
             withCredentials:true
         }).then(response=>{
             setTimeout(()=>{
-                window.location.reload();
+                navigate("/smartShopingKart/");
             },1000);
         });
     }

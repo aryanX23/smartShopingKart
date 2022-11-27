@@ -4,6 +4,7 @@ import Dashboard from './dashboard';
 import Home from './home';
 import { Routes, Route, Navigate } from "react-router-dom"
 import axios from 'axios';
+import PrivateRoutes from './utils/privateRoutes';
 
 function App() {
   localStorage.setItem("userDetails",JSON.stringify({isLoggedIn:true}));
@@ -21,7 +22,10 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/smartShopingKart/" element={JSON.parse(localStorage.getItem("userDetails")).isLoggedIn?<Dashboard/>:<Home/> } />
+        <Route exact path="/smartShopingKart/" element={<Home/> } />
+        <Route element={<PrivateRoutes/>}>
+          <Route exact path="/smartShopingKart/dashboard/" element={<Dashboard/> } />
+        </Route>
         <Route path="*" element={<Navigate to="/smartShopingKart/" replace />}/>
       </Routes>     
     </div>
