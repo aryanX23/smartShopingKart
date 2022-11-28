@@ -10,7 +10,7 @@ function App() {
   localStorage.setItem("userDetails",JSON.stringify({isLoggedIn:false}));
   React.useEffect(()=>{axios({
     method: 'post',
-    url:"http://65.2.73.149:4000/login",
+    url:"http://172.31.5.41:4000/login",
     headers: {'Content-Type': 'application/json'}, 
     withCredentials:true
     }).then(response=>{
