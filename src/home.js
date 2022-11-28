@@ -14,12 +14,6 @@ export default function Home(){
         else
             setDataVisi(prev=>"false");
     }
-    React.useEffect(() => {
-        let isAuth = JSON.parse(localStorage.getItem('userDetails')).isLoggedIn;
-        if(isAuth) {
-            navigate("/smartShopingKart/dashboard/");
-        }
-    }, [navigate]);
     function handleformState(event){
         setFormState(prev=>event.target.name);
         setFormData(prev=>({
@@ -39,7 +33,7 @@ export default function Home(){
         if(event.target.name==="login"){
             axios({
                 method: 'post',
-                url:"http://3.109.55.185:4000/signin",
+                url:"http://13.232.65.132:4000/signin",
                 headers: {'Content-Type': 'application/json'}, 
                 withCredentials:true,
                 data: {
@@ -56,7 +50,7 @@ export default function Home(){
         else{
             axios({
                 method: 'post',
-                url:"http://3.109.55.185:4000/register",
+                url:"http://13.232.65.132:4000/register",
                 headers: {'Content-Type': 'application/json'}, 
                 withCredentials:true,
                 data: {

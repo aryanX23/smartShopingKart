@@ -7,7 +7,7 @@ export default function Dashboard(){
     function handleLogOut(){
         axios({
             method: 'post',
-            url:"http://3.109.55.185:4000/logout",
+            url:"http://13.232.65.132:4000/logout",
             headers: {'Content-Type': 'application/json'}, 
             withCredentials:true
         }).then(response=>{
@@ -29,7 +29,7 @@ export default function Dashboard(){
                 </div>
                 <div className="navRight">
                     <div className="workerBox">
-                        <span className="workerName">{JSON.parse(localStorage.getItem("userDetails")).username}</span>
+                        <span className="workerName">Worker 1</span>
                     </div>
                     <img src={process.env.PUBLIC_URL+"/images/logOutBtn.png"} onClick={handleLogOut} alt="logOut" className="logOutBtn"/>
                 </div>

@@ -7,14 +7,12 @@ import axios from 'axios';
 import PrivateRoutes from './utils/privateRoutes';
 
 function App() {
-  localStorage.setItem("userDetails",JSON.stringify({isLoggedIn:false}));
   React.useEffect(()=>{axios({
     method: 'post',
-    url:"http://3.109.55.185:4000/login",
+    url:"http://13.232.65.132:4000/login",
     headers: {'Content-Type': 'application/json'}, 
     withCredentials:true
     }).then(response=>{
-      console.log(response);
         localStorage.setItem("userDetails",JSON.stringify(response.data));
     });
   },[]);
