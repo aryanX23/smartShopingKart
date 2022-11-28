@@ -13,7 +13,7 @@ export default function Dashboard(){
         }).then(response=>{
             setTimeout(()=>{
                 navigate("/smartShopingKart/");
-            },1000);
+            },500);
         });
     }
     function handleChoice(){

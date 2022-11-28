@@ -68,7 +68,7 @@ export default function Home(){
                 console.log(response.data);
                 setTimeout(()=>{
                     navigate("/smartShopingKart/");
-                },1000);
+                },500);
             });
         }
     }

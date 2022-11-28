@@ -16,7 +16,6 @@ function App() {
     }).then(response=>{
       console.log(response);
         localStorage.setItem("userDetails",JSON.stringify(response.data));
-        console.log(JSON.parse(localStorage.getItem("userDetails")));
     });
   },[]);
   return (
