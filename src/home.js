@@ -16,7 +16,7 @@ export default function Home(){
     }
     React.useEffect(() => {
         let isAuth = JSON.parse(localStorage.getItem('userDetails')).isLoggedIn;
-        if(isAuth && isAuth !== null) {
+        if(isAuth) {
             navigate("/smartShopingKart/dashboard/");
         }
     }, [navigate]);

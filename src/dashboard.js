@@ -6,7 +6,7 @@ export default function Dashboard(){
     const navigate=useNavigate();
     function handleLogOut(){
         axios({
-            method: 'get',
+            method: 'post',
             url:"http://3.109.55.185:4000/logout",
             headers: {'Content-Type': 'application/json'}, 
             withCredentials:true
@@ -24,7 +24,7 @@ export default function Dashboard(){
             <img src={process.env.PUBLIC_URL+"/images/waveBg.png"} alt="waves" className="waveBg" />
             <div className="upperNav">
                 <div className="navLeft">
-                    <img src={process.env.PUBLIC_URL+"images/logo.png"} alt="logo" className="logo"/>
+                    <img src={process.env.PUBLIC_URL+"/images/logo.png"} alt="logo" className="logo"/>
                     <span className="navTitle">Smart Kart</span>
                 </div>
                 <div className="navRight">
