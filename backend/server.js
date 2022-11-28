@@ -101,8 +101,10 @@ app.post('/login',(req,res)=>{
 app.post('/logout',(req,res)=>{
     console.log("/logout");
     req.session.destroy(err=>{
-        if(err)
+        if(err){
+            console.log("logout error");
             res.status(400).send("Internal Error");
+            }
         else
             res.status(200).send("LOGGED OUT!");
     });
