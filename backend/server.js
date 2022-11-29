@@ -29,8 +29,9 @@ app.use(
       resave: true,
       saveUninitialized: false,
       cookie: {
-        secure:false,
-        httpOnly:true
+        secure:true,
+        httpOnly:true,
+        expires: 60000*60*24
     },
         store:store
     })
