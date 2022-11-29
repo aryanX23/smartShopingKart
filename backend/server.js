@@ -9,6 +9,9 @@ const MongoDBstore=require('connect-mongodb-session')(session);
 const dotenv = require('dotenv');
 const User=require('./userSchema');
 const io = require('./socket');
+var https = require("https");
+var fs = require("fs");
+
 //IMPORTING PACKAGES^
 //<-----------------------START OF MIDDLEWARE------------------------------------>
 const app=express();
@@ -116,9 +119,18 @@ app.get('/',(req,res)=>{
 });
 
 mongoose.connect(process.env.CONNECTION_URI).then(result=>{
-    const server = app.listen(process.env.PORT,()=>{
-        console.log(`Server is sucessfully running on port ${process.env.PORT} !`);
-    });
+    const server=https.createServer(
+    {
+      key: fs.readFileSync("server.key"),
+      cert: fs.readFileSync("server.cert"),
+    },
+    app
+  )
+  .listen(process.env.PORT, function () {
+    console.log(
+      `App listening on port ${process.env.PORT}!`
+    );
+  });
     const io = require('./socket').init(server);
     io.on('connection', socket=>{
         console.log("Client Connected Successfully");
