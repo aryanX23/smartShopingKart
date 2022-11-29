@@ -33,7 +33,7 @@ export default function Home(){
         if(event.target.name==="login"){
             axios({
                 method: 'post',
-                url:"https://13.232.65.132:4000/signin",
+                url:"http://13.232.65.132:4000/signin",
                 headers: {'Content-Type': 'application/json'}, 
                 withCredentials:true,
                 data: {
@@ -50,7 +50,7 @@ export default function Home(){
         else{
             axios({
                 method: 'post',
-                url:"https://13.232.65.132:4000/register",
+                url:"http://13.232.65.132:4000/register",
                 headers: {'Content-Type': 'application/json'}, 
                 withCredentials:true,
                 data: {
