@@ -9,7 +9,7 @@ import PrivateRoutes from './utils/privateRoutes';
 function App() {
   React.useEffect(()=>{axios({
     method: 'post',
-    url:"http://13.232.65.132:4000/login",
+    url:"https://13.232.65.132:4000/login",
     headers: {'Content-Type': 'application/json'}, 
     withCredentials:true
     }).then(response=>{

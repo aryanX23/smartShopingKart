@@ -7,7 +7,7 @@ export default function Dashboard(){
     function handleLogOut(){
         axios({
             method: 'post',
-            url:"http://13.232.65.132:4000/logout",
+            url:"https://13.232.65.132:4000/logout",
             headers: {'Content-Type': 'application/json'}, 
             withCredentials:true
         }).then(response=>{
