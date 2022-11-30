@@ -9,6 +9,7 @@ const MongoDBstore=require('connect-mongodb-session')(session);
 const dotenv = require('dotenv');
 const User=require('./userSchema');
 const io = require('./socket');
+const Product = require('./productSchema');
 //IMPORTING PACKAGES^
 //<-----------------------START OF MIDDLEWARE------------------------------------>
 const app=express();
@@ -19,7 +20,7 @@ const store= new MongoDBstore({
     collections: process.env.COLLECTION
 });
 app.use(cors({
-    origin:`http://aryan-rai.me`,
+    origin:`http://localhost:3000`,
     credentials: true
 }));
 app.use(bodyParser.json());
@@ -86,11 +87,45 @@ app.post('/register',(req,res)=>{
         }
     }); 
 });
+app.post('/registerProduct',(req,res)=>{
+    console.log("/registerProduct");
+    const {name,price,rfid}=req.body;
+    const query = Product.findOne({'rfid': rfid });
+    query.select('rfid');
+    query.exec(function (err, product) {
+        if(product===null){
+            const product=new Product({
+                name: name,
+                price:price,
+                rfid:rfid
+            });
+            product.save().then(result=>{
+                res.send("Product Registration Successful!")
+                console.log("Created Entry");
+            }).catch(err=>{
+                console.log(err);
+                res.send("Internal Error");
+            });
+        }
+        else{
+            res.send("Product Already Exists!");
+        }
+    }); 
+});
 app.post('/sendData',(req,res)=>{
-    const data=req.body;
-    console.log(data);
-    io.getIO().emit('dataArduino',{data: data});
-    res.send("O.K.");
+    const {rfid}=req.body;
+    const query = Product.findOne({'rfid': rfid });
+    query.select('name price');
+    query.exec(function (err, product) {
+        if ( product === null ){
+            res.send({price:0});
+        }
+        else
+        {
+            res.send({price:product.price});
+            io.getIO().emit('dataArduino',{name:product.name, price:product.price});
+        }
+    });
 });
 app.post('/login',(req,res)=>{
     console.log("/login");

@@ -5,7 +5,7 @@ module.exports= {
     init: httpServer => {
         io= require('socket.io')(httpServer,{
             cors: {
-                origin: `http://aryan-rai.me`,
+                origin: `http://localhost:3000`,
             }});
         return io;
     },

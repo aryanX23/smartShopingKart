@@ -2,12 +2,20 @@ import React from "react";
 import './dashboard.css';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import clientSocket from 'socket.io-client';
 export default function Dashboard(){
+    React.useEffect(() => {
+        const socket=clientSocket('http://localhost:4000');
+        socket.on('dataArduino',response=>{
+            console.log(response);
+        });
+            // eslint-disable-next-line
+    },[]);
     const navigate=useNavigate();
     function handleLogOut(){
         axios({
             method: 'post',
-            url:"http://13.232.65.132:4000/logout",
+            url:"http://localhost:4000/logout",
             headers: {'Content-Type': 'application/json'}, 
             withCredentials:true
         }).then(response=>{
