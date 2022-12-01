@@ -20,7 +20,7 @@ const store= new MongoDBstore({
     collections: process.env.COLLECTION
 });
 app.use(cors({
-    origin:`http://localhost:3000`,
+    origin: process.env.ORIGIN_URI,
     credentials: true
 }));
 app.use(bodyParser.json());

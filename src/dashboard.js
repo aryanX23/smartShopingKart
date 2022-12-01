@@ -4,10 +4,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import clientSocket from 'socket.io-client';
 export default function Dashboard(){
+    const [name,setName]=React.useState([]);
+    const [price,setPrice]=React.useState([]);
     React.useEffect(() => {
-        const socket=clientSocket('http://localhost:4000');
+        const socket=clientSocket('http://13.232.65.132:4000');
         socket.on('dataArduino',response=>{
-            console.log(response);
+            setName(prev=>name.push(response.name));
+            setPrice(prev=>price.push(response.price));
         });
             // eslint-disable-next-line
     },[]);
@@ -15,13 +18,12 @@ export default function Dashboard(){
     function handleLogOut(){
         axios({
             method: 'post',
-            url:"http://localhost:4000/logout",
+            url:"http://13.232.65.132:4000/logout",
             headers: {'Content-Type': 'application/json'}, 
             withCredentials:true
         }).then(response=>{
-            setTimeout(()=>{
-                navigate("/smartShopingKart/");
-            },500);
+            localStorage.setItem("userDetails",JSON.stringify({isLoggedIn:false}));
+            navigate("/smartShopingKart/");
         });
     }
     function handleChoice(){
@@ -46,7 +48,38 @@ export default function Dashboard(){
                 <div className="leftSide">
                     <div className="productTitle"><span>PRODUCT LIST</span></div>
                     <div className="productList">
-                        
+                        <table className="styled-table">
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Price</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>PRODUCT A</td>
+                                <td>500 rs</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>PRODUCT B</td>
+                                <td>1000 rs</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>PRODUCT C</td>
+                                <td>1500 rs</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>PRODUCT D</td>
+                                <td>2000 rs</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td></td>
+                                <td>5000 rs</td>
+                            </tr>
+                        </table>
                     </div>
                     <input type="text" className="customerName" placeholder="Enter Customer Name"/>
                     <div className="buttonDiv" onClick={handleChoice} >

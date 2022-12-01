@@ -8,6 +8,12 @@ export default function Home(){
     const [formState,setFormState]=React.useState("Signin");
     const [formData,setFormData]=React.useState({username:"",email:"",password:""});
     const [dataVisi,setDataVisi]=React.useState("false");
+    React.useEffect(() => {
+        let isAuth = JSON.parse(localStorage.getItem('userDetails')).isLoggedIn;
+        if(isAuth && isAuth !== null) {
+            navigate("/smartShopingKart/dashboard");
+        }
+    }, [navigate]);
     function handleClick(){
         if(dataVisi==="false")
             setDataVisi(prev=>"true");
@@ -33,7 +39,7 @@ export default function Home(){
         if(event.target.name==="login"){
             axios({
                 method: 'post',
-                url:"http://localhost:4000/signin",
+                url:"http://13.232.65.132:4000/signin",
                 headers: {'Content-Type': 'application/json'}, 
                 withCredentials:true,
                 data: {
@@ -42,15 +48,13 @@ export default function Home(){
                 }
             }).then(response=>{
                 localStorage.setItem("userDetails",JSON.stringify(response.data));
-                setTimeout(()=>{
-                    navigate("/smartShopingKart/dashboard/");
-                },1000);
+                navigate("/smartShopingKart/dashboard/");
             });
         }
         else{
             axios({
                 method: 'post',
-                url:"http://localhost:4000/register",
+                url:"http://13.232.65.132:4000/register",
                 headers: {'Content-Type': 'application/json'}, 
                 withCredentials:true,
                 data: {
@@ -59,10 +63,7 @@ export default function Home(){
                     password:formData.password
                 }
             }).then(response=>{
-                console.log(response.data);
-                setTimeout(()=>{
-                    navigate("/smartShopingKart/");
-                },500);
+                navigate("/smartShopingKart/");
             });
         }
     }
