@@ -7,7 +7,7 @@ export default function Dashboard(){
     const [name,setName]=React.useState([]);
     const [price,setPrice]=React.useState([]);
     React.useEffect(() => {
-        const socket=clientSocket('http://13.232.65.132:4000');
+        const socket=clientSocket('http://65.0.94.114:4000');
         socket.on('dataArduino',response=>{
             setName(prev=>name.push(response.name));
             setPrice(prev=>price.push(response.price));
@@ -18,7 +18,7 @@ export default function Dashboard(){
     function handleLogOut(){
         axios({
             method: 'post',
-            url:"http://13.232.65.132:4000/logout",
+            url:"http://65.0.94.114:4000/logout",
             headers: {'Content-Type': 'application/json'}, 
             withCredentials:true
         }).then(response=>{
