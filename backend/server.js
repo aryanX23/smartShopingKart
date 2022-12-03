@@ -115,7 +115,8 @@ app.post('/registerProduct',(req,res)=>{
     }); 
 });
 app.post('/sendData',(req,res)=>{
-    const {rfid}=req.body;
+    const {buffer1,buffer2,buffer3,buffer4}=req.body;
+    console.log(req.body);
     const query = Product.findOne({'rfid': rfid });
     query.select('name price');
     query.exec(function (err, product) {
