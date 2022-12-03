@@ -43,17 +43,17 @@ export default function Dashboard(){
             setTotal(0);
         }
         else if(event.target.name === "accept"){
-            // axios({
-            //     method: 'post',
-            //     url:"http://localhost:4000/saveProductList",
-            //     headers: {'Content-Type': 'application/json'}, 
-            //     withCredentials:true,
-            //     data: {
-            //         name:productList.name,
-            //         price:productList.price,
-            //         customer:customer
-            //     }
-            // });
+            axios({
+                method: 'post',
+                url:"http://localhost:4000/saveProductList",
+                headers: {'Content-Type': 'application/json'}, 
+                withCredentials:true,
+                data: {
+                    name:productList.name,
+                    price:productList.price,
+                    customer:customer
+                }
+            });
             setProductList([]);
             setTotal(0);
             setCustomer("");

@@ -2,11 +2,11 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 const productListSchema= new Schema({
     name: {
-        type: String,
+        type: arrays,
         required:true
     },
     price: {
-        type: Number,
+        type: arrays,
         required:true
     },
     customer:{
