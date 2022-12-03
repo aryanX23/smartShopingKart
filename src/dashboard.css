@@ -201,5 +201,10 @@
 .productList{
     display: flex;
     justify-content: center;
-    align-items: center;   
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
 }
+.productList::-webkit-scrollbar {
+    display: none;
+  }

@@ -10,6 +10,8 @@ const dotenv = require('dotenv');
 const User=require('./userSchema');
 const io = require('./socket');
 const Product = require('./productSchema');
+const productList= require('./productListSchema');
+const productListSchema = require("./productListSchema");
 //IMPORTING PACKAGES^
 //<-----------------------START OF MIDDLEWARE------------------------------------>
 const app=express();
@@ -30,7 +32,7 @@ app.use(
       resave: true,
       saveUninitialized: false,
       cookie: {
-        secure:true,
+        secure:false,
         httpOnly:true,
         expires: 60000*60*24
     },
@@ -131,8 +133,9 @@ app.post('/login',(req,res)=>{
     console.log("/login");
     if(req.session.isLoggedIn)
         res.send({user_name:req.session.username,isLoggedIn:req.session.isLoggedIn});
-    else
+    else{
         res.send({isLoggedIn:false});
+    }
 });
 app.post('/logout',(req,res)=>{
     console.log("/logout");
@@ -145,10 +148,36 @@ app.post('/logout',(req,res)=>{
             res.status(200).send("LOGGED OUT!");
     });
 });
+app.post('/saveProductList',(req,res)=>{
+    console.log("/saveProductList");
+    const {name,price,customer}=req.body;
+    const query = productListSchema.findOne({'customer': customer });
+    query.select('customer');
+    query.exec(function (err, productList) {
+        if(productList===null){
+            const productList=new productListSchema({
+                name: name,
+                price:price,
+                customer:customer
+            });
+            productList.save().then(result=>{
+                res.send("Product Saved Successful!")
+                console.log("Created Entry");
+            }).catch(err=>{
+                console.log(err);
+                res.send("Internal Error");
+            });
+        }
+        else{
+            res.send("Customer Already Exists!");
+        }
+    }); 
+});
 app.get('/',(req,res)=>{
     console.log("Endpoint 1 Working!!");
     res.send("O.K.");
 });
+
 
 mongoose.connect(process.env.CONNECTION_URI).then(result=>{
     const server = app.listen(process.env.PORT,()=>{

@@ -4,13 +4,21 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import clientSocket from 'socket.io-client';
 export default function Dashboard(){
-    const [name,setName]=React.useState([]);
-    const [price,setPrice]=React.useState([]);
+    const [productList,setProductList]=React.useState([]);
+    const [total,setTotal]=React.useState(0);
+    const [customer,setCustomer]=React.useState("");
     React.useEffect(() => {
-        const socket=clientSocket('http://65.0.94.114:4000');
+        const socket=clientSocket('http://3.108.74.54:4000');
         socket.on('dataArduino',response=>{
-            setName(prev=>name.push(response.name));
-            setPrice(prev=>price.push(response.price));
+            console.log(response.data);
+            setProductList(prev=>[
+                ...prev,
+                {
+                    name:response.name,
+                    price:response.price
+                }
+            ]);
+            setTotal(prev=>prev+response.price);
         });
             // eslint-disable-next-line
     },[]);
@@ -18,7 +26,7 @@ export default function Dashboard(){
     function handleLogOut(){
         axios({
             method: 'post',
-            url:"http://65.0.94.114:4000/logout",
+            url:"http://3.108.74.54:4000/logout",
             headers: {'Content-Type': 'application/json'}, 
             withCredentials:true
         }).then(response=>{
@@ -26,8 +34,30 @@ export default function Dashboard(){
             navigate("/smartShopingKart/");
         });
     }
-    function handleChoice(){
-
+    function handleChange(event){
+        setCustomer(prev=>event.target.value);
+    }
+    function handleChoice(event){
+        if(event.target.name === "reject"){
+            setProductList([]);
+            setTotal(0);
+        }
+        else if(event.target.name === "accept"){
+            // axios({
+            //     method: 'post',
+            //     url:"http://localhost:4000/saveProductList",
+            //     headers: {'Content-Type': 'application/json'}, 
+            //     withCredentials:true,
+            //     data: {
+            //         name:productList.name,
+            //         price:productList.price,
+            //         customer:customer
+            //     }
+            // });
+            setProductList([]);
+            setTotal(0);
+            setCustomer("");
+        }
     }
     return(
         <div className="dashBody">
@@ -54,37 +84,24 @@ export default function Dashboard(){
                                 <th>Name</th>
                                 <th>Price</th>
                             </tr>
-                            <tr>
+                            {productList.map((product, index) => (
+                            <tr data-index={index}>
                                 <td></td>
-                                <td>PRODUCT A</td>
-                                <td>500 rs</td>
+                                <td>{product.name}</td>
+                                <td>{product.price} Rs</td>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td>PRODUCT B</td>
-                                <td>1000 rs</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>PRODUCT C</td>
-                                <td>1500 rs</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>PRODUCT D</td>
-                                <td>2000 rs</td>
-                            </tr>
+                            ))}
                             <tr>
                                 <td>Total</td>
                                 <td></td>
-                                <td>5000 rs</td>
+                                <td>{total} Rs</td>
                             </tr>
                         </table>
                     </div>
-                    <input type="text" className="customerName" placeholder="Enter Customer Name"/>
+                    <input type="text" className="customerName" onChange={handleChange} value={customer} placeholder="Enter Customer Name"/>
                     <div className="buttonDiv" onClick={handleChoice} >
-                        <button className="divBtn">Accept</button>
-                        <button className="divBtn">Reject</button>
+                        <button className="divBtn" name="accept" onClick={handleChoice}>Accept</button>
+                        <button className="divBtn" name="reject" onClick={handleChoice}>Reject</button>
                     </div>
                 </div>
                 <div className="rightSide">
