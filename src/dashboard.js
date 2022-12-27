@@ -42,7 +42,7 @@ export default function Dashboard(){
             setProductList([]);
             setTotal(0);
         }
-        else if(event.target.name === "accept" && productList != []){
+        else if(event.target.name === "accept" && productList !== []){
             axios({
                 method: 'post',
                 url:"http://localhost:4000/saveProductList",
