@@ -49,6 +49,7 @@ export default function Home(){
             }).then(response=>{
                 localStorage.setItem("userDetails",JSON.stringify(response.data));
                 navigate("/smartShopingKart/dashboard/");
+                setFormState("Signin");
             });
         }
         else{
